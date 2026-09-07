@@ -1,7 +1,25 @@
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 400);
 }
 
 function draw() {
-  background(220);
+  background(225);
+  strokeWeight(4);
+  line(0,40,600,40);
+  line(50,0,50,400);
+  line(195,0,195,200);
+  line(0,200,600,200);
+  line(550,0,550,400);
+  line(50,100,195,100);
+  line(0,300,400,300);
+  line(150,200,150,300);
+  line(300,40,300,400);
+  line(400,0,400,400);
+
+  fill(0)
+  rect(50,40,145,60);
+  rect(550,200,50,200);
+  fill(255,0,0)
+  rect(150,200,50,100);
+  rect(400,40,160,160);
 }

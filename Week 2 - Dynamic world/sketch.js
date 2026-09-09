@@ -4,9 +4,10 @@ function setup() {
 
 function draw() {
   background(117, 217, 247);
-  noStroke();
 
   /*Mountains*/
+  stroke(0);
+  strokeWeight(2);
   fill(100);
   triangle(250, 480, 550, 480, 360, 200);
   fill(150);
@@ -14,6 +15,7 @@ function draw() {
   triangle(450, 480, 750, 480, 585, 150);
 
   /*Road*/
+  noStroke()
   fill(47, 156, 47);
   rect(0, 480, 800, 490);
   fill(62, 191, 62);
@@ -35,10 +37,28 @@ function draw() {
   stroke(0)
   strokeWeight(1);
   fill(175);
-  rect(650, 350, 60, 100);
-  rect(665, 450, 10, 20);
+  rect(655, 380, 50, 90);
+  rect(670, 470, 20, 30);
 
+  noStroke()
+  fill(166, 0, 0);
+  circle(680, 395, 25);
+  fill(214, 111, 0);
+  circle(680, 425, 25);
+  fill(0, 255, 0);
+  circle(680, 455, 25);
 
+  /*Trees*/
+  noStroke()
+  fill(153, 79, 0);
+  rect(80, 430, 20, 60);
+  rect(240, 400, 20, 90);
+  rect(430, 430, 20, 60);
+
+  fill(91, 148, 5);
+  circle(90, 400, 70);
+  circle(250, 370, 70);
+  circle(440, 400, 70);
 
   /*Sun*/
   noStroke();
@@ -55,3 +75,4 @@ function draw() {
   ellipse(550, 120, 90, 50);
   ellipse(520, 100, 90, 50)
 }
+

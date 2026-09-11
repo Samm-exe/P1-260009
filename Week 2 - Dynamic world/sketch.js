@@ -1,11 +1,35 @@
+let Sun = 80;
+let angle = 0;
+
+function TurnSun() {
+  push()
+  translate (400, 450);
+  if (angle < 360)
+    rotate(angle)
+    angle = angle + 0.5;
+
+  if (angle >= 360)
+    angle = 0
+  
+  /*Sun*/
+  noStroke();
+  fill(251,225,0);
+  circle(Sun, 400, 70);
+  pop()
+}
+
 function setup() {
   createCanvas(800, 600);
+  angleMode(DEGREES);
 }
 
 function draw() {
   background(117, 217, 247);
 
+  TurnSun()
+
   /*Mountains*/
+  
   stroke(0);
   strokeWeight(2);
   fill(100);
@@ -45,7 +69,7 @@ function draw() {
   circle(680, 395, 25);
   fill(214, 111, 0);
   circle(680, 425, 25);
-  fill(0, 255, 0);
+  fill(0, 150, 0);
   circle(680, 455, 25);
 
   /*Trees*/
@@ -59,12 +83,7 @@ function draw() {
   circle(90, 400, 70);
   circle(250, 370, 70);
   circle(440, 400, 70);
-
-  /*Sun*/
-  noStroke();
-  fill(251,225,0);
-  circle(80, 80, 70);
-
+  
   /*Clouds*/
   noStroke();
   fill(255, 255, 255);
@@ -74,5 +93,8 @@ function draw() {
   ellipse(500, 130, 100, 40);
   ellipse(550, 120, 90, 50);
   ellipse(520, 100, 90, 50)
+
+
+  
 }
 

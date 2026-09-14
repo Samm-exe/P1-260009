@@ -1,6 +1,11 @@
 let Sun = 80;
 let angle = 0;
 let traffic_colors = 0;
+let cloudspeed = 1;
+let cloudspeed2 = 0.8;
+let cloud1 = 0;
+let cloud2 = 140;
+let cloud3 = 340;
 
 function TurnSun() {
   push()
@@ -37,7 +42,15 @@ function DrawTrafficLight() {
     fill(255, 174, 0)
     circle(680, 425, 25);
   }
-  
+}
+
+function DrawLeaves(LeafOrigin) {
+  let xPos = Math.sin(frameCount * 0.02) * 8 + LeafOrigin
+  let xPos2 = Math.sin(frameCount * -0.02) * 8 + LeafOrigin
+  fill(0, 133, 0);
+  circle(xPos, 395, 70);
+  fill(91, 148, 5);
+  circle(xPos2, 400, 70);
 }
 
 function setup() {
@@ -102,32 +115,53 @@ function draw() {
   rect(80, 430, 20, 60);
   rect(240, 400, 20, 90);
   rect(430, 430, 20, 60);
+  DrawLeaves(95);
+  DrawLeaves(245);
+  DrawLeaves(445);
 
-  fill(0, 133, 0);
-  circle(95, 395, 70);
-  circle(245, 365, 70);
-  circle(445, 405, 70);
-  fill(91, 148, 5);
-  circle(90, 400, 70);
-  circle(250, 370, 70);
-  circle(440, 400, 70);
 
   
   /*Clouds*/
   noStroke();
   fill(189, 189, 189);
-  ellipse(240, 90, 90, 50);
-  ellipse(300, 90, 90, 40);
-  ellipse(280, 70, 50, 30);
-  ellipse(500, 120, 100, 40);
-  ellipse(550, 110, 90, 50);
-  ellipse(520, 90, 90, 50);
-
+  ellipse(cloud1 + 240, 90, 90, 50);
+  ellipse(cloud1 + 300, 90, 90, 40);
+  ellipse(cloud1+ 280, 70, 50, 30);
   fill(255, 255, 255);
-  ellipse(240, 100, 90, 50);
-  ellipse(300, 100, 90, 40);
-  ellipse(280, 80, 50, 30);
-  ellipse(500, 130, 100, 40);
-  ellipse(550, 120, 90, 50);
-  ellipse(520, 100, 90, 50);
+  ellipse(cloud1 + 240, 100, 90, 50);
+  ellipse(cloud1 + 300, 100, 90, 40);
+  ellipse(cloud1 + 280, 80, 50, 30);
+
+  cloud1 = cloud1 - cloudspeed
+    if (cloud1 <= -350) {
+      cloud1 = 700
+    }
+  noStroke();
+  fill(189, 189, 189);
+  ellipse(cloud2 + 500, 120, 100, 40);
+  ellipse(cloud2 + 550, 110, 90, 50);
+  ellipse(cloud2 +520, 90, 90, 50);
+  fill(255, 255, 255);
+  ellipse(cloud2 + 500, 130, 100, 40);
+  ellipse(cloud2 + 550, 120, 90, 50);
+  ellipse(cloud2 + 520, 100, 90, 50);
+
+  cloud2 = cloud2 - cloudspeed2
+    if (cloud2 <= -550) {
+      cloud2 = 700
+    }
+  noStroke();
+  fill(189, 189, 189);
+  ellipse(cloud3 + 500, 150, 100, 40);
+  ellipse(cloud3 + 550, 140, 90, 50);
+  ellipse(cloud3 +520, 120, 90, 50);
+  fill(255, 255, 255);
+  ellipse(cloud3 + 500, 160, 100, 40);
+  ellipse(cloud3 + 550, 150, 90, 50);
+  ellipse(cloud3 + 520, 130, 90, 50);
+
+  cloud3 = cloud3 - cloudspeed
+    if (cloud3 <= -600) { 
+      cloud3 = 700
+    }  
 }

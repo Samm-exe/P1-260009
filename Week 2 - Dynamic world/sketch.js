@@ -103,10 +103,15 @@ function draw() {
   rect(240, 400, 20, 90);
   rect(430, 430, 20, 60);
 
+  fill(0, 133, 0);
+  circle(95, 395, 70);
+  circle(245, 365, 70);
+  circle(445, 405, 70);
   fill(91, 148, 5);
   circle(90, 400, 70);
   circle(250, 370, 70);
   circle(440, 400, 70);
+
   
   /*Clouds*/
   noStroke();
@@ -116,9 +121,5 @@ function draw() {
   ellipse(280, 80, 50, 30);
   ellipse(500, 130, 100, 40);
   ellipse(550, 120, 90, 50);
-  ellipse(520, 100, 90, 50)
-
-
-  
+  ellipse(520, 100, 90, 50);
 }
-

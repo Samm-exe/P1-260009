@@ -1,21 +1,43 @@
 let Sun = 80;
 let angle = 0;
+let traffic_colors = 0;
 
 function TurnSun() {
   push()
   translate (400, 450);
-  if (angle < 360)
+  if (angle < 360) {
     rotate(angle)
     angle = angle + 0.5;
-
-  if (angle >= 360)
+  }
+  if (angle >= 360) {
     angle = 0
-  
+  }
   /*Sun*/
   noStroke();
   fill(251,225,0);
   circle(Sun, 400, 70);
   pop()
+}
+function keyPressed() {
+    if (keyCode === 13) {
+      traffic_colors = (traffic_colors + 1) % 3;
+      console.log(traffic_colors)
+    }
+}
+function DrawTrafficLight() {
+  if (traffic_colors == 0) {
+    fill(255, 0, 0)
+    circle(680, 395, 25)
+  }
+  if (traffic_colors == 1) {
+    fill(0, 255, 0)
+    circle(680, 455, 25)
+  }
+  if (traffic_colors == 2) {
+    fill(255, 174, 0)
+    circle(680, 425, 25);
+  }
+  
 }
 
 function setup() {
@@ -27,6 +49,8 @@ function draw() {
   background(117, 217, 247);
 
   TurnSun()
+  
+  DrawTrafficLight()
 
   /*Mountains*/
   

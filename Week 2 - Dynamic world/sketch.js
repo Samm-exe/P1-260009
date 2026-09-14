@@ -29,11 +29,11 @@ function DrawTrafficLight() {
     fill(255, 0, 0)
     circle(680, 395, 25)
   }
-  if (traffic_colors == 1) {
+  else if (traffic_colors == 1) {
     fill(0, 255, 0)
     circle(680, 455, 25)
   }
-  if (traffic_colors == 2) {
+   else if (traffic_colors == 2) {
     fill(255, 174, 0)
     circle(680, 425, 25);
   }
@@ -49,8 +49,6 @@ function draw() {
   background(117, 217, 247);
 
   TurnSun()
-  
-  DrawTrafficLight()
 
   /*Mountains*/
   
@@ -95,6 +93,8 @@ function draw() {
   circle(680, 425, 25);
   fill(0, 150, 0);
   circle(680, 455, 25);
+
+  DrawTrafficLight()
 
   /*Trees*/
   noStroke()

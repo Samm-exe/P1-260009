@@ -7,7 +7,7 @@ function TurnSun() {
   translate (400, 450);
   if (angle < 360) {
     rotate(angle)
-    angle = angle + 0.5;
+    angle = angle + 0.3;
   }
   if (angle >= 360) {
     angle = 0
@@ -115,6 +115,14 @@ function draw() {
   
   /*Clouds*/
   noStroke();
+  fill(189, 189, 189);
+  ellipse(240, 90, 90, 50);
+  ellipse(300, 90, 90, 40);
+  ellipse(280, 70, 50, 30);
+  ellipse(500, 120, 100, 40);
+  ellipse(550, 110, 90, 50);
+  ellipse(520, 90, 90, 50);
+
   fill(255, 255, 255);
   ellipse(240, 100, 90, 50);
   ellipse(300, 100, 90, 40);

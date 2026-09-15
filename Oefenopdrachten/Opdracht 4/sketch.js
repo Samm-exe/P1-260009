@@ -87,7 +87,7 @@ function draw() {
   if (keyIsDown(LEFT_ARROW) ||  keyIsDown(65)){
     Xball = Xball - 1
   }
-  if (keyIsDown(RIGHT_ARROW) ||  keyIsDown(68)){
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)){
     Xball = Xball + 1
   }
   if (Xball >= 850) {

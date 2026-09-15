@@ -1,25 +1,30 @@
 let Sun = 80;
-let angle = 0;
+let anglesun = 0;
+let Moon = 80;
+let anglemoon = 180;
 let traffic_colors = 0;
 let cloudspeed = 1;
 let cloudspeed2 = 0.8;
 let cloud1 = 0;
 let cloud2 = 140;
 let cloud3 = 340;
-let car1 = 0
-let carspeed1 = 3
-let car2 = 0
-let carspeed2 = 5
+let car1 = 0;
+let carspeed1 = 3;
+let car2 = 0;
+let carspeed2 = 5;
+let daynight = 0;
+let daycolor;
+let nightcolor;
 
 function TurnSun() {
   push()
   translate (400, 450);
-  if (angle < 360) {
-    rotate(angle)
-    angle = angle + 0.3;
+  if (anglesun < 360) {
+    rotate(anglesun)
+    anglesun = anglesun + 0.3;
   }
-  if (angle >= 360) {
-    angle = 0
+  if (anglesun >= 360) {
+    anglesun = 0
   }
   /*Sun*/
   noStroke();
@@ -27,6 +32,24 @@ function TurnSun() {
   circle(Sun, 400, 70);
   pop()
 }
+
+function TurnMoon() {
+  push()
+  translate (400, 450);
+  if (anglemoon < 360) {
+    rotate(anglemoon)
+    anglemoon= anglemoon + 0.3;
+  }
+  if (anglemoon >= 360) {
+    anglemoon = 0
+  }
+  /*Moon*/
+  noStroke();
+  fill(235);
+  circle(Moon, 400, 70);
+  pop()
+}
+
 function keyPressed() {
     if (keyCode === 13) {
       traffic_colors = (traffic_colors + 1) % 3;
@@ -63,13 +86,19 @@ function DrawLeaves(LeafOrigin) {
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
+  daycolor = color("rgb(0, 150, 255)");
+  nightcolor = color("rgb(4, 0, 153)");
 }
-
 function draw() {
-  background(117, 217, 247);
+  let t = Math.sin((anglesun - 280)/ 360.0 * 2 * Math.PI) * 0.5 + 0.5
+  let daynightcolor = lerpColor(daycolor, nightcolor, t);
+  background(daynightcolor);
+  
 
   TurnSun()
+  TurnMoon()
 
+  
   /*Mountains*/
   
   stroke(0);

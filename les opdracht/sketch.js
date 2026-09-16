@@ -8,6 +8,7 @@ function setup() {
 function keyPressed() {
   if (keyCode == 32) {
     rolldice()
+    roll_time = roll_time + 1 
   }
 }
 function rolldice() { 

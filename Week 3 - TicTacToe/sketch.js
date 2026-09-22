@@ -1,6 +1,7 @@
 let turns = 0;
 let winningB = false;
 let winningR = false;
+let drawg = false;
 
 let linksBoven = 0;
 let linksMidden = 0;
@@ -74,6 +75,15 @@ function mousePressed() {
     }
     winB()
     winR()
+    gelijk_spel()
+  }
+}
+function gelijk_spel() {
+  if (drawg === false) {
+   if (linksBoven ==! 0 && linksMidden ==! 0 && linksOnder ==!0  && middenBoven ==! 0 && middenMidden ==! 0 &&
+    middenOnder ==! 0 && rechtsBoven ==! 0 && rechtsMidden ==! 0 && rechtsOnder ==! 0 && winningB === false && winningR == false) {
+      drawg = true
+    }
   }
 }
 function winB() {
@@ -149,6 +159,7 @@ function draw() {
     text("BLUE'S TURN", 150, 50);
 
   }
+  gelijk_spel()
   if (winningR === true) {
     background("rgb(255, 0, 0)")
   }
@@ -302,6 +313,18 @@ function draw() {
     strokeWeight(2);
     fill("rgb(255, 0, 0)");
     text("RED WINS!!!", 50, 300);
+  }
+  if (drawg === true) {
+    textSize(20);
+    textFont(AppleFont);
+    fill("rgb(0, 0, 0)");
+    text("Press space to reset", 170, 450);
+    textSize(80);
+    textFont(StreetFont);
+    stroke("rgb(0, 0, 0)");
+    strokeWeight(2);
+    fill("rgb(80, 80, 80)");
+    text("DRAW GAME!", 50, 300);
   }
 
 }

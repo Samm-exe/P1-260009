@@ -33,6 +33,7 @@ function keyPressed() {
     rechtsOnder = 0;
     winningR = false;
     winningB = false;
+    drawg = false;
   }
 }
 function mousePressed() {

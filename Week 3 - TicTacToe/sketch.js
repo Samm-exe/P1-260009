@@ -80,8 +80,8 @@ function mousePressed() {
 }
 function gelijk_spel() {
   if (drawg === false) {
-   if (linksBoven ==! 0 && linksMidden ==! 0 && linksOnder ==!0  && middenBoven ==! 0 && middenMidden ==! 0 &&
-    middenOnder ==! 0 && rechtsBoven ==! 0 && rechtsMidden ==! 0 && rechtsOnder ==! 0 && winningB === false && winningR == false) {
+   if (linksBoven != 0 && linksMidden != 0 && linksOnder !=0  && middenBoven != 0 && middenMidden != 0 &&
+    middenOnder != 0 && rechtsBoven != 0 && rechtsMidden != 0 && rechtsOnder != 0 && winningB === false && winningR == false) {
       drawg = true
     }
   }
@@ -159,12 +159,14 @@ function draw() {
     text("BLUE'S TURN", 150, 50);
 
   }
-  gelijk_spel()
   if (winningR === true) {
     background("rgb(255, 0, 0)")
   }
   if (winningB === true) {
     background("rgb(43, 0, 255)")
+  }
+  else if (drawg === true) {
+    background("rgb(80, 80, 80)")
   }
   // speelveld base
   fill(0);
@@ -319,12 +321,12 @@ function draw() {
     textFont(AppleFont);
     fill("rgb(0, 0, 0)");
     text("Press space to reset", 170, 450);
-    textSize(80);
+    textSize(60);
     textFont(StreetFont);
     stroke("rgb(0, 0, 0)");
     strokeWeight(2);
     fill("rgb(80, 80, 80)");
-    text("DRAW GAME!", 50, 300);
+    text("DRAW GAME!", 60, 280);
   }
 
 }

@@ -20,59 +20,32 @@ function mousePressed() {
   if (mouseButton == LEFT) {
     turns = (turns + 1) % 2;
     // Red turns(turns 0, square 1)
-    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 100 && mouseY <= 190 && turns == 0) {
-      linksBoven = 1
+    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 100 && mouseY <= 190 && linksBoven == 0) {
+      linksBoven = turns + 1
     }
-    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 100 && mouseY <= 190 && turns == 1) {
-      linksBoven = 2
+    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 100 && mouseY <= 190 && middenBoven == 0) {
+      middenBoven = turns + 1
     }
-    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 100 && mouseY <= 190 && turns == 0) {
-      middenBoven = 1
+    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 100 && mouseY <= 190 && rechtsBoven == 0) {
+      rechtsBoven = turns + 1
     }
-    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 100 && mouseY <= 190 && turns == 1) {
-      middenBoven = 2
+    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 200 && mouseY <= 290 && linksMidden == 0) {
+      linksMidden = turns + 1
     }
-    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 100 && mouseY <= 190 && turns == 0) {
-      rechtsBoven = 1
+    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 200 && mouseY <= 290 && middenMidden == 0) {
+      middenMidden = turns + 1
     }
-    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 100 && mouseY <= 190 && turns == 1) {
-      rechtsBoven = 2
+    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 200 && mouseY <= 290 && rechtsMidden == 0) {
+      rechtsMidden = turns + 1
     }
-    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 200 && mouseY <= 290 && turns == 0) {
-      linksMidden = 1
+    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 300 && mouseY <= 390 && linksOnder == 0) {
+      linksOnder =  turns + 1
     }
-    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 200 && mouseY <= 290 && turns == 1) {
-      linksMidden = 2
+    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 300 && mouseY <= 390 && middenOnder == 0) {
+      middenOnder = turns + 1
     }
-    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 200 && mouseY <= 290 && turns == 0) {
-      middenMidden = 1
-    }
-    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 200 && mouseY <= 290 && turns == 1) {
-      middenMidden = 2
-    }
-    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 200 && mouseY <= 290 && turns == 0) {
-      rechtsMidden = 1
-    }
-    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 200 && mouseY <= 290 && turns == 1) {
-      rechtsMidden = 2
-    }
-    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 300 && mouseY <= 390 && turns == 0) {
-      linksOnder = 1
-    }
-    if (mouseX >= 100 && mouseX <= 190 && mouseY >= 300 && mouseY <= 390 && turns == 1) {
-      linksOnder = 2
-    }
-    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 300 && mouseY <= 390 && turns == 0) {
-      middenOnder = 1
-    }
-    if (mouseX >= 200 && mouseX <= 290 && mouseY >= 300 && mouseY <= 390 && turns == 1) {
-      middenOnder = 2
-    }
-    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 300 && mouseY <= 390 && turns == 0) {
-      rechtsOnder = 1
-    }
-    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 300 && mouseY <= 390 && turns == 1) {
-      rechtsOnder = 2
+    if (mouseX >= 300 && mouseX <= 390 && mouseY >= 300 && mouseY <= 390 && rechtsOnder == 0) {
+      rechtsOnder = turns + 1
     }
   }
 }

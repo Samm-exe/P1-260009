@@ -14,11 +14,14 @@ let middenOnder = 0;
 let rechtsBoven = 0;
 let rechtsMidden = 0;
 let rechtsOnder = 0;
+let StreetFont;
+let AppleFont;
+let Clicks;
 
 function setup() {
   createCanvas(500, 500);
-  StreetFont = loadFont("Street Cred.otf")
-  AppleFont = loadFont("AppleGaramond-bold.ttf")
+  StreetFont = loadFont("Street Cred.otf");
+  AppleFont = loadFont("AppleGaramond-bold.ttf");
 }
 function keyPressed() {
   if (keyCode == 32) {
@@ -36,43 +39,58 @@ function keyPressed() {
     drawg = false;
   }
 }
+function preload() {
+  Clicks = loadSound("click.mp3");
+  Toot = loadSound("party.mp3");
+  Loose = loadSound("trumpet.mp3");
+}
+
 function mousePressed() {
   if (mouseButton == LEFT) {
     if (mouseX >= 100 && mouseX <= 190 && mouseY >= 100 && mouseY <= 190 && linksBoven == 0) {
       turns = (turns + 1) % 2;
-      linksBoven = turns + 1
+      linksBoven = turns + 1;
+      Clicks.play();
     }
     if (mouseX >= 200 && mouseX <= 290 && mouseY >= 100 && mouseY <= 190 && middenBoven == 0) {
       turns = (turns + 1) % 2;
-      middenBoven = turns + 1
+      middenBoven = turns + 1;
+      Clicks.play();
     }
     if (mouseX >= 300 && mouseX <= 390 && mouseY >= 100 && mouseY <= 190 && rechtsBoven == 0) {
       turns = (turns + 1) % 2;
-      rechtsBoven = turns + 1
+      rechtsBoven = turns + 1;
+      Clicks.play();
     }
     if (mouseX >= 100 && mouseX <= 190 && mouseY >= 200 && mouseY <= 290 && linksMidden == 0) {
       turns = (turns + 1) % 2;
-      linksMidden = turns + 1
+      linksMidden = turns + 1;
+      Clicks.play();
     }
     if (mouseX >= 200 && mouseX <= 290 && mouseY >= 200 && mouseY <= 290 && middenMidden == 0) {
       turns = (turns + 1) % 2;
-      middenMidden = turns + 1
+      middenMidden = turns + 1;
+      Clicks.play();
     }
     if (mouseX >= 300 && mouseX <= 390 && mouseY >= 200 && mouseY <= 290 && rechtsMidden == 0) {
       turns = (turns + 1) % 2;
-      rechtsMidden = turns + 1
+      rechtsMidden = turns + 1;
+      Clicks.play();
     }
     if (mouseX >= 100 && mouseX <= 190 && mouseY >= 300 && mouseY <= 390 && linksOnder == 0) {
       turns = (turns + 1) % 2;
-      linksOnder = turns + 1
+      linksOnder = turns + 1;
+      Clicks.play();
     }
     if (mouseX >= 200 && mouseX <= 290 && mouseY >= 300 && mouseY <= 390 && middenOnder == 0) {
       turns = (turns + 1) % 2;
-      middenOnder = turns + 1
+      middenOnder = turns + 1;
+      Clicks.play();
     }
     if (mouseX >= 300 && mouseX <= 390 && mouseY >= 300 && mouseY <= 390 && rechtsOnder == 0) {
       turns = (turns + 1) % 2;
-      rechtsOnder = turns + 1
+      rechtsOnder = turns + 1;
+      Clicks.play();
     }
     winB()
     winR()
@@ -84,6 +102,7 @@ function gelijk_spel() {
    if (linksBoven != 0 && linksMidden != 0 && linksOnder !=0  && middenBoven != 0 && middenMidden != 0 &&
     middenOnder != 0 && rechtsBoven != 0 && rechtsMidden != 0 && rechtsOnder != 0 && winningB === false && winningR == false) {
       drawg = true
+      Loose.play()
     }
   }
 }
@@ -91,27 +110,35 @@ function winB() {
   if (winningB === false) {
     if (linksBoven == middenBoven && middenBoven == rechtsBoven && linksBoven == 2) {
       winningB = true
+      Toot.play();
     }
     else if (linksMidden == middenMidden && middenMidden == rechtsMidden && linksMidden == 2) {
       winningB = true
+      Toot.play();
     }
     else if (linksOnder == middenOnder && middenOnder == rechtsOnder && linksOnder == 2) {
       winningB = true
+      Toot.play();
     }
     else if (linksBoven == linksMidden && linksMidden == linksOnder && linksBoven == 2) {
       winningB = true
+      Toot.play();
     }
     else if (middenBoven == middenMidden && middenMidden == middenOnder && middenBoven == 2) {
       winningB = true
+      Toot.play();
     }
     else if (rechtsBoven == rechtsMidden && rechtsMidden == rechtsOnder && rechtsBoven == 2) {
       winningB = true
+      Toot.play();
     }
     else if (rechtsBoven == middenMidden && middenMidden == linksOnder && rechtsBoven == 2) {
       winningB = true
+      Toot.play();
     }
     else if (linksBoven == middenMidden && middenMidden == rechtsOnder && linksBoven == 2) {
       winningB = true
+      Toot.play();
     }
   }
 }
@@ -119,27 +146,35 @@ function winR() {
   if (winningR === false) {
     if (linksBoven == middenBoven && middenBoven == rechtsBoven && linksBoven == 1) {
       winningR = true
+      Toot.play();
     }
     else if (linksMidden == middenMidden && middenMidden == rechtsMidden && linksMidden == 1) {
       winningR = true
+      Toot.play();
     }
     else if (linksOnder == middenOnder && middenOnder == rechtsOnder && linksOnder == 1) {
       winningR = true
+      Toot.play();
     }
     else if (linksBoven == linksMidden && linksMidden == linksOnder && linksBoven == 1) {
       winningR = true
+      Toot.play();
     }
     else if (middenBoven == middenMidden && middenMidden == middenOnder && middenBoven == 1) {
       winningR = true
+      Toot.play();
     }
     else if (rechtsBoven == rechtsMidden && rechtsMidden == rechtsOnder && rechtsBoven == 1) {
       winningR = true
+      Toot.play();
     }
     else if (rechtsBoven == middenMidden && middenMidden == linksOnder && rechtsBoven == 1) {
       winningR = true
+      Toot.play();
     }
     else if (linksBoven == middenMidden && middenMidden == rechtsOnder && linksBoven == 1) {
       winningR = true
+      Toot.play();
     }
   }
 }

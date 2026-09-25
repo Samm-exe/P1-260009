@@ -23,6 +23,7 @@ function setup() {
   StreetFont = loadFont("Street Cred.otf");
   AppleFont = loadFont("AppleGaramond-bold.ttf");
 }
+//Reset game function
 function keyPressed() {
   if (keyCode == 32) {
     linksBoven = 0;
@@ -44,7 +45,7 @@ function preload() {
   Toot = loadSound("party.mp3");
   Loose = loadSound("trumpet.mp3");
 }
-
+//checks in which square the mouse is clicking and plays a sound
 function mousePressed() {
   if (mouseButton == LEFT) {
     if (mouseX >= 100 && mouseX <= 190 && mouseY >= 100 && mouseY <= 190 && linksBoven == 0) {
@@ -97,6 +98,7 @@ function mousePressed() {
     gelijk_spel()
   }
 }
+//checks if every square is filled and no one has won
 function gelijk_spel() {
   if (drawg === false) {
    if (linksBoven != 0 && linksMidden != 0 && linksOnder !=0  && middenBoven != 0 && middenMidden != 0 &&
@@ -106,6 +108,7 @@ function gelijk_spel() {
     }
   }
 }
+// checks if player B has a three in a row
 function winB() {
   if (winningB === false) {
     if (linksBoven == middenBoven && middenBoven == rechtsBoven && linksBoven == 2) {
@@ -142,6 +145,7 @@ function winB() {
     }
   }
 }
+// checks if player R has a three in a row
 function winR() {
   if (winningR === false) {
     if (linksBoven == middenBoven && middenBoven == rechtsBoven && linksBoven == 1) {
@@ -195,6 +199,7 @@ function draw() {
     text("BLUE'S TURN", 150, 50);
 
   }
+  // changes background based on game outcome
   if (winningR === true) {
     background("rgb(255, 0, 0)")
   }
@@ -327,7 +332,7 @@ function draw() {
     fill("rgb(43, 0, 255)");
     rect(300, 300, 90, 90, 10);
   }
-
+  // makes text appear when blue wins
   if (winningB === true) {
     textSize(20);
     textFont(AppleFont);
@@ -340,6 +345,7 @@ function draw() {
     fill("rgb(43, 0, 255)");
     text("BLUE WINS!!!", 50, 300);
   }
+  // makes text appear if red wins
   if (winningR === true) {
     textSize(20);
     textFont(AppleFont);
@@ -352,6 +358,7 @@ function draw() {
     fill("rgb(255, 0, 0)");
     text("RED WINS!!!", 50, 300);
   }
+  // makes text appear if no one wins
   if (drawg === true) {
     textSize(20);
     textFont(AppleFont);

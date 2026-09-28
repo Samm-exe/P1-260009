@@ -66,6 +66,6 @@ function draw() {
   let color2 = true;
   for (let i = 0; i < 21; i ++) {
     strokeWeight(1);
-    fill()
+    fill(0);
   }
 }

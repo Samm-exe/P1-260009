@@ -54,4 +54,18 @@ function draw() {
     circle(550 + i * 50, 50, 40);
 
   }
+  // 6
+  let color = true;
+  for (let i = 0; i < 10; i ++) {
+    fill(color ? "red" : "white")
+    strokeWeight(1);
+    circle(480, 220, 250 - i * 25);
+    color =! color;
+  }
+  // 7
+  let color2 = true;
+  for (let i = 0; i < 21; i ++) {
+    strokeWeight(1);
+    fill()
+  }
 }

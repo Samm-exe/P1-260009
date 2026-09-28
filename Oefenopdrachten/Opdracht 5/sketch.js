@@ -64,8 +64,17 @@ function draw() {
   }
   // 7
   let color2 = true;
-  for (let i = 0; i < 21; i ++) {
+  for (let i = 0; i < 11; i ++) {
     strokeWeight(1);
-    fill(0);
+    fill(color2 ? "gray" : "white");
+    rect(625, 115 + i * 10, 20 + i * 10, 10);
+    color2 =! color2;
+  }
+  let color3 = true;
+  for(let i = 0; i < 10; i ++) {
+    strokeWeight(1);
+    fill(color3 ? "white" : "gray");
+    rect(625, 225 + i * 10, 130 - i * 12, 10);
+    color3 =! color3;
   }
 }

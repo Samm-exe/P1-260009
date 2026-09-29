@@ -1,5 +1,6 @@
 function setup() {
   createCanvas(380, 350);
+  
 }
 
 function checkNumber(x){
@@ -10,6 +11,8 @@ function draw() {
   background(220);
 
   let colors = ['red', 'green', 'blue', 'purple', 'yellow'];
+  let colors2 = ['red', 'green', 'blue', 'purple', 'yellow'];
+
   let numbers = [400, 240, 10, 490, 30, 60, 244, 500, 301, 300];
   let sum1 = [3, 55, 93, 20, 102, 6];
   let sum2 = [14, 22, 80, 5];
@@ -60,9 +63,32 @@ function draw() {
   }
 
   // 5
-  for (let i = 0; i < 1; i ++) {
+  let antwoord = 0;
+  for (let i = 0; i < sum1.length; i ++) {
     textSize(30);
+    if (i < sum2.length) {
+      antwoord += sum2[i];
+    }
+    antwoord += sum1[i];
   }
+  text(antwoord, 130, 50);
+
+  // 6
+  let hoeveelE = 0;
+  let woord = 'Overheidsfinancieringstekort'
+  for (let i = 0; i < woord.length; i ++) {
+    if (woord[i] == 'e') {
+      hoeveelE += 1;
+    }
+  }
+  text(hoeveelE + 'x', 140, 120); 
+
+  //7 
+  colors2.sort();
+  for (let i = 0; i < colors2.length; i++) {
+    textSize(15);
+    fill(colors2[i]);
+    text(colors2[i], 140, 190 + i * 15);
+  }  
+
 }
-
-

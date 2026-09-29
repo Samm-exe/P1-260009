@@ -1,8 +1,12 @@
+let kleuren = [];
+
+
 function setup() {
   createCanvas(380, 350);
-  
+  for (let i = 0; i < 5; i ++) {
+    kleuren.push([random(255), random(255), random(255)])
+  }
 }
-
 function checkNumber(x){
   return x < 300;
 }
@@ -90,5 +94,10 @@ function draw() {
     fill(colors2[i]);
     text(colors2[i], 140, 190 + i * 15);
   }  
+  // 8
 
+  for (let i = 0; i < 5; i++) {
+    fill(kleuren[i]);
+    rect(130 + i * 30, 290, 30, 30);
+  }
 }

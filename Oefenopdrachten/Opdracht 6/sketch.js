@@ -7,6 +7,7 @@ function setup() {
     kleuren.push([random(255), random(255), random(255)])
   }
 }
+//checks numbers for 
 function checkNumber(x){
   return x < 300;
 }
@@ -95,7 +96,6 @@ function draw() {
     text(colors2[i], 140, 190 + i * 15);
   }  
   // 8
-
   for (let i = 0; i < 5; i++) {
     fill(kleuren[i]);
     rect(130 + i * 30, 290, 30, 30);

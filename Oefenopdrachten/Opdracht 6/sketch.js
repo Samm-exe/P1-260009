@@ -1,10 +1,14 @@
 let kleuren = [];
+let cijfers = [];
 
 
 function setup() {
   createCanvas(380, 350);
   for (let i = 0; i < 5; i ++) {
-    kleuren.push([random(255), random(255), random(255)])
+    kleuren.push([random(255), random(255), random(255)]);
+  }
+  for (let i = 0; i < 12; i++) {
+    cijfers.push(round(random(0, 100)))
   }
 }
 //checks numbers for 
@@ -100,4 +104,17 @@ function draw() {
     fill(kleuren[i]);
     rect(130 + i * 30, 290, 30, 30);
   }
+  // 9 
+  let totaal = 0;
+  
+  for (let i = 0; i < 12; i ++) {
+    totaal = totaal + cijfers[i];
+    fill(0);
+    textSize(15);
+    text(cijfers[i], 260, 15 + i * 15);
+    
+  }
+  let gem = totaal / cijfers.length;
+  text('totaal:' + totaal, 260, 210);
+  text('gem:' + round(gem, 3), 260, 230);
 }

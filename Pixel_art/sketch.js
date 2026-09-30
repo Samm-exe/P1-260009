@@ -1,6 +1,6 @@
 
 function setup() {
-  createCanvas(900, 600);
+  createCanvas(1200, 750);
 }
 
 function draw() {
@@ -148,4 +148,14 @@ function draw() {
   rect(170, 300, 10, 10);
   rect(160, 310, 10, 10);
 
+
+  /* Frog in car*/
+  // outline
+  fill("rgb(0, 0, 0)");
+  rect(380, 200, 10, 30);
+  rect(370, 230, 10, 40);
+  rect(360, 270, 10, 10);
+  rect(350, 280, 10, 10);
+  rect(350, 330, 10, 10);
+  rect(340, 290, 10, 60);
 }

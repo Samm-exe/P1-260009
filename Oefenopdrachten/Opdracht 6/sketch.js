@@ -99,14 +99,15 @@ function draw() {
     fill(colors2[i]);
     text(colors2[i], 140, 190 + i * 15);
   }  
+  
   // 8
   for (let i = 0; i < 5; i++) {
     fill(kleuren[i]);
     rect(130 + i * 30, 290, 30, 30);
   }
+
   // 9 
   let totaal = 0;
-  
   for (let i = 0; i < 12; i ++) {
     totaal = totaal + cijfers[i];
     fill(0);

@@ -1,48 +1,115 @@
 let colors = [];
 let posS = [];
-let size = 20;
-let growA = 2;
-let grow = true;
+let posC = [];
+let sizeS = 20;
+let sizeC = 30;
+let sizeR = 15;
+let growAS = 2;
+let growAC = 3;
+let growAR = 1;
+let growS = true;
+let growC = true;
+let growR = true;
 let actiefS = 0;
-let opacityS = 0;
+let actiefC = 0;
+let actiefR = 0;
 
 function setup() {
   createCanvas(800, 600);
   // pushed kleuren en posities naar de arrays voor gebruik
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 20; i++) {
     colors.push([random(255), random(255), random(255)]);
-    posS.push([random(0, 800), random(0, 600)]);
+    posS.push([random(10, 700), random(10, 500)]);
+    posC.push([random(20, 700), random(20, 500)]);
   }
+  angleMode(DEGREES)
 }
 
 function draw() {
-  background("rgb(130, 0, 145)");
-  console.log(size);
+  background("rgb(169, 72, 179)");
+  console.log(sizeR);
+  // draws the squares and makes them grow
   for (let i = 0; i <= actiefS; i++) {
     fill(colors[i]);
     if (i == actiefS) {
       strokeWeight(5);
-      rect(...posS[i], size, size, opacityS);
+      translate(...posS[i]);
+      rect(...posS[i], sizeS, sizeS);
     }
     else {
       rect(...posS[i], 0, 0);
     }
   }
-  if (grow === true) {
-    size += growA
+  if (growS === true) {
+    sizeS += growAS
   }
-  else if (grow === false) {
-    size -= growA
+  else if (growS === false) {
+    sizeS -= growAS
   }
-  if (size <= 0) {
-    grow = true
+  if (sizeS <= 0) {
+    growS = true
     actiefS += 1
   }
-  if (size >= 100) {
-    grow = false
+  if (sizeS >= 100) {
+    growS = false
   }
   if (actiefS == 15) {
     actiefS = 0
   }
+  // draws and grows the diamonds
+  for (let i = 0; i <= actiefR; i++) {
+    fill(colors[i]);
+    if (i == actiefR) {
+      push();
+      rotate(45);
+      strokeWeight(5);
+      translate(...posS[i]);
+      rect(...posS[i], sizeR, sizeR);
+      pop();
+    }
+    else {
+      rect(...posS[i], 0, 0);
+    }
+  }
+  if (growR === true) {
+    sizeR += growAR
+  }
+  else if (growR === false) {
+    sizeR -= growAR
+  }
+  if (sizeR <= 0) {
+    growR = true
+    actiefR += 1
+  }
+  if (sizeR >= 100) {
+    growR = false
+  }
 
+  for (let i = 0; i <= actiefC; i++) {
+    fill(colors[i]);
+    if (i == actiefC) {
+      strokeWeight(5);
+      translate(...posC[i]);
+      circle(...posC[i], sizeC);
+    }
+    else {
+      circle(...posC[i], 0);
+    }
+  }
+  if (growC === true) {
+    sizeC += growAC
+  }
+  else if (growC === false) {
+    sizeC -= growAC
+  }
+  if (sizeC <= 0) {
+    growC = true
+    actiefC += 1
+  }
+  if (sizeC >= 100) {
+    growC = false
+  }
+  if (actiefC == 15) {
+    actiefC = 0
+  }
 }

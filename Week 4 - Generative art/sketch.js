@@ -70,9 +70,10 @@ function draw() {
     fill(colors[i]);
     if (i == actiefR) {
       push();
+      translate(...posS[i]);
       rotate(45);
       strokeWeight(5);
-      translate(...posS[i]);
+      
       rect(...posS[i], sizeR, sizeR);
       rect(...posS[i], sizeR, sizeR);
       rect(...posS[i], sizeR, sizeR);
@@ -116,10 +117,10 @@ function draw() {
       circle(...posC[i], sizeC + i * 6);
       circle(...posC[i], sizeC + i * 8);
       circle(...posC[i], sizeC + i * 4);
-      circle(...posC[i], sizeC + i * 2);
-      circle(...posC[i], sizeC + i * 6);
-      circle(...posC[i], sizeC + i * 8);
-      circle(...posC[i], sizeC + i * 4);
+      circle(...posC[i], sizeC + i * 1);
+      circle(...posC[i], sizeC + i * 3);
+      circle(...posC[i], sizeC + i * 5);
+      circle(...posC[i], sizeC + i * 7);
     }
     else {
       circle(...posC[i], 0);
@@ -141,7 +142,7 @@ function draw() {
   if (sizeC >= 100) {
     growC = false
   }
-  if (actiefC == 240) {
+  if (actiefC == 50) {
     actiefC = 0
   }
 }

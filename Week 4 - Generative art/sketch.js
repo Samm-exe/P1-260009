@@ -6,7 +6,7 @@ let sizeC = 30;
 let sizeR = 15;
 let growAS = 2;
 let growAC = 3;
-let growAR = 1;
+let growAR = 1.5;
 let growS = true;
 let growC = true;
 let growR = true;
@@ -17,7 +17,7 @@ let actiefR = 0;
 function setup() {
   createCanvas(800, 600);
   // pushed kleuren en posities naar de arrays voor gebruik
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 240; i++) {
     colors.push([random(255), random(255), random(255)]);
     posS.push([random(10, 700), random(10, 500)]);
     posC.push([random(20, 700), random(20, 500)]);
@@ -26,17 +26,26 @@ function setup() {
 }
 
 function draw() {
-  background("rgb(169, 72, 179)");
+  background("rgb(188, 147, 193)");
   console.log(sizeR);
   // draws the squares and makes them grow
   for (let i = 0; i <= actiefS; i++) {
     fill(colors[i]);
     if (i == actiefS) {
       strokeWeight(5);
-      translate(...posS[i]);
+      rect(...posS[i], sizeS, sizeS);
+      rect(...posS[i], sizeS, sizeS);
+      rect(...posS[i], sizeS, sizeS);
+      rect(...posS[i], sizeS, sizeS);
+      rect(...posS[i], sizeS, sizeS);
+      rect(...posS[i], sizeS, sizeS);
+      rect(...posS[i], sizeS, sizeS);
       rect(...posS[i], sizeS, sizeS);
     }
     else {
+      rect(...posS[i], 0, 0);
+      rect(...posS[i], 0, 0);
+      rect(...posS[i], 0, 0);
       rect(...posS[i], 0, 0);
     }
   }
@@ -53,7 +62,7 @@ function draw() {
   if (sizeS >= 100) {
     growS = false
   }
-  if (actiefS == 15) {
+  if (actiefS == 240) {
     actiefS = 0
   }
   // draws and grows the diamonds
@@ -65,9 +74,19 @@ function draw() {
       strokeWeight(5);
       translate(...posS[i]);
       rect(...posS[i], sizeR, sizeR);
+      rect(...posS[i], sizeR, sizeR);
+      rect(...posS[i], sizeR, sizeR);
+      rect(...posS[i], sizeR, sizeR);
+      rect(...posS[i], sizeR, sizeR);
+      rect(...posS[i], sizeR, sizeR);
+      rect(...posS[i], sizeR, sizeR);
+      rect(...posS[i], sizeR, sizeR);
       pop();
     }
     else {
+      rect(...posS[i], 0, 0);
+      rect(...posS[i], 0, 0);
+      rect(...posS[i], 0, 0);
       rect(...posS[i], 0, 0);
     }
   }
@@ -84,15 +103,28 @@ function draw() {
   if (sizeR >= 100) {
     growR = false
   }
-
+  if (actiefR == 40) {
+    actiefR = 0;
+  }
+  // draws and grows the circles
   for (let i = 0; i <= actiefC; i++) {
     fill(colors[i]);
     if (i == actiefC) {
       strokeWeight(5);
       translate(...posC[i]);
-      circle(...posC[i], sizeC);
+      circle(...posC[i], sizeC + i * 2);
+      circle(...posC[i], sizeC + i * 6);
+      circle(...posC[i], sizeC + i * 8);
+      circle(...posC[i], sizeC + i * 4);
+      circle(...posC[i], sizeC + i * 2);
+      circle(...posC[i], sizeC + i * 6);
+      circle(...posC[i], sizeC + i * 8);
+      circle(...posC[i], sizeC + i * 4);
     }
     else {
+      circle(...posC[i], 0);
+      circle(...posC[i], 0);
+      circle(...posC[i], 0);
       circle(...posC[i], 0);
     }
   }
@@ -109,7 +141,7 @@ function draw() {
   if (sizeC >= 100) {
     growC = false
   }
-  if (actiefC == 15) {
+  if (actiefC == 240) {
     actiefC = 0
   }
 }

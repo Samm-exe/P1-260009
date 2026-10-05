@@ -54,30 +54,30 @@ function minGetal(a, b) {
 function draw() {
   background(220);
 
-// tekent de blauwe lucht
+  // tekent de blauwe lucht
   tekenRechthoek(0, 0, 800, 270);
 
-// tekent de huizen
+  // tekent de huizen
   tekenHuis(100, 220);
   tekenHuis(200, 220);
   tekenHuis(300, 220);
   tekenHuis(400, 220);
   tekenHuis(500, 220);
 
-// tekent de zon 
+  // tekent de zon 
   tekenCircle(50, 50, 70);
 
-// tekent de weg
+  // tekent de weg
   tekenLijn(0, 270, 800, 270);
   tekenLijn(0, 330, 800, 330);
 
-// tekent de straat naam
+  // tekent de straat naam
   tekenText(250, 70, 0, 30);
 
-// print het optel, deel, keer en min getal
-text(optelGetal(3,6), 135, 210);
-text(deelGetal(12, 4), 235, 210);
-text(keerGetal(9, 3), 330, 210);
-text(minGetal(27, 12), 430, 210);
-text(optelGetal(5, 6), 530, 210);
+  // print het optel, deel, keer en min getal
+  text(optelGetal(3, 6), 135, 210);
+  text(deelGetal(12, 4), 235, 210);
+  text(keerGetal(9, 3), 330, 210);
+  text(minGetal(27, 12), 430, 210);
+  text(optelGetal(5, 6), 530, 210);
 }

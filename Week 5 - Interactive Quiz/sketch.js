@@ -1,5 +1,8 @@
+let PowerFont;
+
 function setup() {
   createCanvas(800, 600);
+  PowerFont = loadFont("Powerful.ttf");
 }
 function questionScreen() {
     strokeWeight(3);
@@ -34,5 +37,14 @@ function questionScreen() {
 }
 function draw() {
   background("rgb(173, 252, 177)");
-  questionScreen()
+  fill(255);
+  rect(10, 10, 780, 100, 20);
+  textFont(PowerFont);
+  textSize(18.5);
+  fill(0);
+  text("WELKOM  BIJ  DE  GROTE  ALGEMEEN  KENNIS  QUIZ", 20, 65);
+  fill(255);
+  rect(30, 140, 720, 300, 20);
+  fill("rgb(0, 153, 89)")
+  rect(650, 460, 100, 50);
 }

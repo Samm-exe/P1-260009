@@ -54,7 +54,6 @@ function showDier() {
   let naamDier = this.html();
   index = bestanden.indexOf(naamDier);
   dierafb = afbeeldingen[index];
-console.log(naamDier);
   for (let i = 0; i < bestanden.length; i ++) {
     if (bestanden[i] == naamDier) {
       knoppen2[i].hide()

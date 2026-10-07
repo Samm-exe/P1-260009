@@ -5,6 +5,9 @@ let knoppen2 = [];
 let achtergrond = 'white';
 let afbeeldingen = [];
 let afb;
+let dierafb;
+let index;
+
 
 function preload() {
   for (let i = 0; i < bestanden.length; i ++) {
@@ -35,6 +38,7 @@ function BGkleur() {
   /* this = kiest de knop waar je op klikt
      html = leest wat er op de knop staat*/
   achtergrond = this.html();
+
   // Checkt of de knop gelijk is aan de achtergrond, en haalt hem weg als het zo is
   for (let i = 0; i < kleuren.length; i ++) {
     if (kleuren[i] == achtergrond) {
@@ -48,9 +52,23 @@ function BGkleur() {
 
 function showDier() {
   let naamDier = this.html();
-  
+  index = bestanden.indexOf(naamDier);
+  dierafb = afbeeldingen[index];
+console.log(naamDier);
+  for (let i = 0; i < bestanden.length; i ++) {
+    if (bestanden[i] == naamDier) {
+      knoppen2[i].hide()
+    }
+    else {
+      knoppen2[i].show()
+    }
+  }
 }
 
 function draw() {
   background(achtergrond);
+  // als dierafb niet niks is dan plaatst hij het bijpassende plaatje
+  if (dierafb !=  null) {
+    image(dierafb, 300, 150, 200, 200);
+  }
 }

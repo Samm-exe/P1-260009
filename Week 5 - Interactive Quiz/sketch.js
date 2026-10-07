@@ -47,7 +47,7 @@ function draw() {
 
   // rule block
   fill(255);
-  rect(30, 140, 720, 320, 20);
+  rect(30, 140, 720, 360, 20);
 
   // continue button
   fill("rgb(0, 153, 89)")

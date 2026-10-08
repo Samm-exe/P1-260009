@@ -2,57 +2,58 @@ let PowerFont;
 let CoinyFont;
 let StartButton;
 let ShowquestionScreen = 0;
-let correctAwnser
+let correctAwnser;
+let currentquestion;
 let questions = [
   {
     question: "1. Welk pokedex nummer heeft Pikachu?",
-    anwsers: ["130", "323", "1", "25"],
+    awnsers: ["130", "323", "1", "25"],
     correctAwnser: 3
-  }
+  },
   {
     question: "2. Welk sterrenbeeld ben je als je bent geboren tussen 21 mei en 21 juni?",
     awnsers: ["Leeuw", "Tweeling", "Waterman", "Stier"],
     correctAwnser: 1
-  }
+  },
   {
     question: "3. Welk van deze dieren is ouder dan bomen?",
-    anwsers: ["Haaien", "Eekhorns", "Honden", "Giraffen"],
+    awnsers: ["Haaien", "Eekhorns", "Honden", "Giraffen"],
     correctAwnser: 0
-  }
+  },
   {
     question: "4. Welk dier is het nationale dier van Schotland?",
-    anwsers: ["Paard", "Beer", "Eenhoorn", "Schildpad"],
+    awnsers: ["Paard", "Beer", "Eenhoorn", "Schildpad"],
     correctAwnser: 2
-  }
+  },
   {
     question: "5. Wat is de vorm van de planeet Mars?",
-    anwsers: ["Cirkel", "Vierkant", "Rugby ball", "Driehoek"],
+    awnsers: ["Cirkel", "Vierkant", "Rugby ball", "Driehoek"],
     correctAwnser: 2
-  }
+  },
   {
     question: "6. Hoe duur zijn alle organen in je lichaam bij elkaar?",
-    anwsers: ["1 miljoen", "5 miljoen", "100 duizend", "3 miljoen"],
+    awnsers: ["1 miljoen", "5 miljoen", "100 duizend", "3 miljoen"],
     correctAwnser: 3
-  }
+  },
   {
     question: "7. Hoeveel procent van de oceaan vloer hebben we al onderzocht?",
-    anwsers: ["10 procent", "1 procent", "0,1 procent", "0,01 procent"],
-    correctAwnser: 
-  }
+    awnsers: ["10 procent", "1 procent", "0,1 procent", "0,01 procent"],
+    correctAwnser: 3
+  },
   {
-    question:
-    anwsers:
-    correctAwnser:
-  }
+    question: "8. Waar waren kettingzagen eerst voor gemaakt?",
+    awnsers: ["Bomen zagen", "Helpen bij geboorte", "De bouw van huizen", "Kunst maken"],
+    correctAwnser:  1
+  },
   {
-    question:
-    anwsers:
-    correctAwnser:
-  }
+    question: "9. Hoe communiceren giraffen met elkaar?",
+    awnsers: ["neuriën", "fluiten", "blaffen", "Met hun lange nekken"],
+    correctAwnser: 0
+  },
   {
-    question:
-    anwsers:
-    correctAwnser:
+    question: "10. Wat was de aller eerste taal?",
+    awnsers: ["Engels", "Spaans", "Lachen", "Frans"],
+    correctAwnser: 2
   }
 ]
 
@@ -67,7 +68,7 @@ function setup() {
   StartButton.style('background', 'rgb(91, 219, 91)');
   StartButton.style('font-size', '30px');
   StartButton.style('border-radius', '15px')
-  StartButton.style('font-family', 'Ariel')
+  StartButton.style('font-family', 'Arial')
   StartButton.mousePressed(showquestions);
   startScreen();
 }
@@ -130,9 +131,17 @@ function questionScreen() {
     rect(405, 460, 375, 120, 50);
   }
 }
+function endScreen() {
 
-function draw() {
-  if (ShowquestionScreen >= 1) {
+}
+if (ShowquestionScreen >= 1) {
     questionScreen();
   }
+function draw() {
+  background("rgb(173, 252, 177)");
+  strokeWeight(3);
+  fill(255);
+  StartButton.hide();
+  //Vraag balk
+  rect(20, 20, 760, 550, 50);
 }

@@ -1,65 +1,77 @@
 let PowerFont;
 let CoinyFont;
 let StartButton;
-let ShowquestionScreen = 0;
+let AwnserButtons = [];
+let aButton;
+let ShowScreen = 0;
 let correctAwnser;
-let currentquestion;
+let score = 0;
+let currentquestion = 0;
+let posAwnser = [
+  { x: 80, y: 350 },
+  { x: 475, y: 350 },
+  { x: 80, y: 480 },
+  { x: 475, y: 480 }
+]
 let questions = [
   {
     question: "1. Welk pokedex nummer heeft Pikachu?",
     awnsers: ["130", "323", "1", "25"],
-    correctAwnser: 3
+    correctAwnser: "25"
   },
   {
-    question: "2. Welk sterrenbeeld ben je als je bent geboren tussen 21 mei en 21 juni?",
-    awnsers: ["Leeuw", "Tweeling", "Waterman", "Stier"],
-    correctAwnser: 1
+    question: "2. Welk dier heeft een groter oog dan zn brein?",
+    awnsers: ["Leeuw", "Cavia", "Struisvogel", "Stier"],
+    correctAwnser: "Struisvogel"
   },
   {
     question: "3. Welk van deze dieren is ouder dan bomen?",
     awnsers: ["Haaien", "Eekhorns", "Honden", "Giraffen"],
-    correctAwnser: 0
+    correctAwnser: "Haaien"
   },
   {
     question: "4. Welk dier is het nationale dier van Schotland?",
     awnsers: ["Paard", "Beer", "Eenhoorn", "Schildpad"],
-    correctAwnser: 2
+    correctAwnser: "Eenhoorn"
   },
   {
     question: "5. Wat is de vorm van de planeet Mars?",
     awnsers: ["Cirkel", "Vierkant", "Rugby ball", "Driehoek"],
-    correctAwnser: 2
+    correctAwnser: "Rugby ball"
   },
   {
     question: "6. Hoe duur zijn alle organen in je lichaam bij elkaar?",
     awnsers: ["1 miljoen", "5 miljoen", "100 duizend", "3 miljoen"],
-    correctAwnser: 3
+    correctAwnser: "3 miljoen"
   },
   {
-    question: "7. Hoeveel procent van de oceaan vloer hebben we al onderzocht?",
+    question: "7. Hoeveel van de oceaan vloer hebben we al onderzocht?",
     awnsers: ["10 procent", "1 procent", "0,1 procent", "0,01 procent"],
-    correctAwnser: 3
+    correctAwnser: "0,01 procent"
   },
   {
     question: "8. Waar waren kettingzagen eerst voor gemaakt?",
     awnsers: ["Bomen zagen", "Helpen bij geboorte", "De bouw van huizen", "Kunst maken"],
-    correctAwnser:  1
+    correctAwnser: "Helpen bij geboorte"
   },
   {
     question: "9. Hoe communiceren giraffen met elkaar?",
     awnsers: ["neuriën", "fluiten", "blaffen", "Met hun lange nekken"],
-    correctAwnser: 0
+    correctAwnser: "neuriën"
   },
   {
     question: "10. Wat was de aller eerste taal?",
     awnsers: ["Engels", "Spaans", "Lachen", "Frans"],
-    correctAwnser: 2
+    correctAwnser: "Lachen"
   }
 ]
+let yippeimg;
+let goedimg;
 
 
 function setup() {
   createCanvas(800, 600);
+  console.log(score);
   PowerFont = loadFont("Powerful.ttf");
   CoinyFont = loadFont("Coiny-Cyrillic.ttf");
   StartButton = createButton("Start de quiz!!");
@@ -72,17 +84,70 @@ function setup() {
   StartButton.mousePressed(showquestions);
   startScreen();
 }
-function showquestions () {
-  ShowquestionScreen += 1;
+
+function preload() {
+  Tooter = loadSound("Toot.mp3");
+  yippeimg = loadImage("blu.png");
+  goedimg = loadImage("blue.png");
+}
+
+function makeAwnserButtons() {
+  // Eerst eventuele oude knoppen verwijderen uit je browser
+  for (let i = 0; i < AwnserButtons.length; i++) {
+    AwnserButtons[i].remove();
+  }
+  AwnserButtons = []; // Maak de array weer leeg
+  
+  let awnsers = questions[currentquestion].awnsers;
+
+  for (let i = 0; i < awnsers.length; i++) {
+    aButton = createButton(awnsers[i]);
+    aButton.position(posAwnser[i].x, posAwnser[i].y);
+    aButton.size(260, 100);
+    aButton.style('background', 'transparent');
+    aButton.style('font-family', 'Coiny-Cyrillic.ttf')
+    aButton.style('font-size', '30px');
+    aButton.style('color', 'black');
+    aButton.style('border', 'none');
+    aButton.mousePressed(checkAwnser);
+
+    AwnserButtons.push(aButton);
+  }
+}
+
+function checkAwnser() {
+  if (this.html() == questions[currentquestion].correctAwnser) {
+    score += 1
+  }
+  currentquestion += 1;
+
+  // Check of er nog vragen over zijn
+  if (currentquestion < questions.length) {
+    makeAwnserButtons(); // Maak knoppen voor de volgende vraag
+  }
+  else {
+   // Verwijderd de laatste knoppen
+    for (let i = 0; i < AwnserButtons.length; i++) {
+      AwnserButtons[i].remove();
+      ShowScreen +=1
+    }
+
+  }
+}
+function showquestions() {
+  ShowScreen += 1;
+  makeAwnserButtons();
+  StartButton.hide();
 }
 function startScreen() {
   background("rgb(173, 252, 177)");
   // Header 
   fill(255);
   rect(10, 10, 780, 100, 20);
+  fill(0);
   textFont(PowerFont);
   textSize(18.5);
-  fill(0);
+ 
   text("WELKOM  BIJ  DE  GROTE  ALGEMEEN  KENNIS  QUIZ", 20, 65);
 
   // rule block
@@ -103,7 +168,6 @@ function questionScreen() {
   background("rgb(173, 252, 177)");
   strokeWeight(3);
   fill(255);
-  StartButton.hide();
   //Vraag balk
   rect(20, 20, 760, 300, 50);
   rect(20, 330, 375, 120, 50);
@@ -129,19 +193,47 @@ function questionScreen() {
   if (mouseX >= 405 && mouseX <= 780 && mouseY >= 460 && mouseY <= 580) {
     fill(220);
     rect(405, 460, 375, 120, 50);
-  }
-}
-function endScreen() {
 
-}
-if (ShowquestionScreen >= 1) {
-    questionScreen();
   }
-function draw() {
-  background("rgb(173, 252, 177)");
-  strokeWeight(3);
+  fill(0);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textFont(CoinyFont);
+  textSize(24);
+  // Toon de huidige vraag in het vragen vak
+  text(questions[currentquestion].question, 400, 170);
+  textAlign(LEFT, BASELINE); // zorgt dat in de rest van de code te text niet verplaatst
+}
+
+function endScreen() {
+  background("rgb(173, 252, 177)")
+  // Header 
   fill(255);
-  StartButton.hide();
-  //Vraag balk
-  rect(20, 20, 760, 550, 50);
+  rect(10, 10, 780, 100, 20);
+  textFont(PowerFont);
+  textSize(14);
+  fill(0);
+  text("DAT  WAS  HET  EINDE  VAN  DE  GROTE  ALGEMEEN  KENNIS  QUIZ!", 20, 65);
+
+  // text block
+  fill(255);
+  rect(30, 140, 720, 420, 20);
+  textSize(25);
+  fill(0);
+  textFont(CoinyFont);
+  text("- De quiz was super leuk toch??", 40, 310);
+  text("- Laat mij een mooie review achter op yelp <3", 40, 340);
+  text("- Je eind score is:"+ score, 40, 370);
+  image(goedimg, 30, 90, 200, 200);
+  image(yippeimg, 500, 400 , 200, 200);
+}
+function draw() {
+  if (ShowScreen >= 2) {
+    endScreen();
+  }
+  if (ShowScreen == 1) {
+    questionScreen();
+    
+  }
+  
 }

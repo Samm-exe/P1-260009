@@ -3,6 +3,8 @@ let kitchenbg;
 let livingroombg;
 let bathroombg;
 let bedroombg;
+let samStand;
+let samStandangle;
 
 let eatright;
 let eatleft;
@@ -72,10 +74,10 @@ function preload() {
   bathroombg = loadImage("assets/bath_room.png");
   kitchenbg = loadImage("assets/kitchen.png");
   bedroombg = loadImage("assets/bed_room.png");
+  samStand = loadImage("assets/sam_stand.png");
+  samStandangle = loadImage("assets/sam_stand_angle.png");
 }
 
-function draw() {
-}
 function livingroom() {
   background(livingroombg);
   //Hides non used buttons
@@ -88,6 +90,8 @@ function livingroom() {
   //Shows used butttons
   sleepbl.show();
   washbr.show();
+
+  
 }
 
 function bathroom() {
@@ -116,6 +120,8 @@ function kitchen() {
   //Shows used buttons
   sleepbr.show();
   washbl.show();
+
+  image(samStandangle, 400, 150, 175, 250);
 }
 
 function bedroom() {
@@ -130,4 +136,8 @@ function bedroom() {
   //Shows used buttons
   eatbl.show();
   sitbr.show();
+}
+
+function draw() {
+  
 }

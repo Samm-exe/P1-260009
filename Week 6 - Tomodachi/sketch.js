@@ -1,8 +1,8 @@
 let backgroundimg1;
-let testbg1;
-let testbg2;
-let testbg3;
-let testbg4;
+let kitchenbg;
+let livingroombg;
+let bathroombg;
+let bedroombg;
 
 let eatright;
 let eatleft;
@@ -68,16 +68,16 @@ function setup() {
 
 function preload() {
   backgroundimg1 = loadImage("assets/boe.jpg");
-  testbg1 = loadImage("assets/test_bg1.png");
-  testbg2 = loadImage("assets/test_bg2.png");
-  testbg3 = loadImage("assets/test_bg3.png");
-  testbg4 = loadImage("assets/test_bg4.png");
+  livingroombg = loadImage("assets/living_room.png");
+  bathroombg = loadImage("assets/bath_room.png");
+  kitchenbg = loadImage("assets/kitchen.png");
+  bedroombg = loadImage("assets/bed_room.png");
 }
 
 function draw() {
 }
 function livingroom() {
-  background(testbg1);
+  background(livingroombg);
   //Hides non used buttons
   eatbr.hide();
   eatbl.hide();
@@ -91,7 +91,7 @@ function livingroom() {
 }
 
 function bathroom() {
-  background(testbg2);
+  background(bathroombg);
   //Hides non used buttons
   eatbl.hide();
   sitbr.hide();
@@ -105,7 +105,7 @@ function bathroom() {
 }
 
 function kitchen() {
-  background(testbg4);
+  background(kitchenbg);
   //Hides non used buttons
   eatbr.hide();
   eatbl.hide();
@@ -119,7 +119,7 @@ function kitchen() {
 }
 
 function bedroom() {
-  background(testbg3);
+  background(bedroombg);
   //Hides non used buttons
   eatbr.hide();
   sleepbl.hide();

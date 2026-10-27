@@ -10,11 +10,12 @@ let textbox;
 let samStand;
 let sam_kitchen;
 let sam_bathroom;
+let sam_livingroom;
 
-let hungerdecay = 0.15;
+let hungerdecay = 0.28;
 let cleandecay = 0.2;
 let energydecay = 0.25;
-let healthdecay = 0.15;
+let healthdecay = 0.2;
 
 let heart_full;
 let food_full;
@@ -118,6 +119,7 @@ function preload() {
   samStand = loadImage("assets/sam_stand.png");
   sam_kitchen = loadImage("assets/sam_kitchen.png");
   sam_bathroom = loadImage("assets/sam_bathroom.png");
+  sam_livingroom = loadImage("assets/sam_livingroom.png");
   food_full = loadImage("assets/hungerbar_full.png");
   heart_full = loadImage("assets/heart_full.png");
   energy_full = loadImage("assets/energybar_full.png");
@@ -138,8 +140,32 @@ function switchkitchen() {
 function switchbedroom() {
   currentRoom = "bedroom"
 }
+
+function mousePressed() {
+  if (mouseButton == LEFT) {
+    if (mouseX >= 320 && mouseX <= 930 && mouseY <= 400 && mouseY >= 375 && currentRoom == "deathscreen") {
+      currentRoom = "livingroom";
+      hunger = 5.0;
+      energy = 5.0;
+      healthy = 5.0;
+      dirty = 5.0;
+    }
+  }
+}
 function deathscreen() {
-  
+  background(deathbg);
+  eatbr.hide();
+  eatbl.hide();
+  sitbr.hide();
+  sitbl.hide();
+  sleepbr.hide();
+  washbl.hide();
+  sleepbl.hide();
+  washbr.hide();
+  feedbutton.hide();
+  washbutton.hide();
+  sleepbutton.hide();
+
 }
 
 function eating() {
@@ -184,7 +210,7 @@ function sleep() {
 function health() {
   for (let i = 0.0; i < 5; i += 1.0) {
     if (i < healthy) {
-    image(heart_full, 900 - i * 40, 410, 35, 35);
+      image(heart_full, 900 - i * 40, 410, 35, 35);
     }
   }
 }
@@ -201,7 +227,11 @@ function livingroom() {
   //Shows used butttons
   sleepbl.show();
   washbr.show();
+  feedbutton.show();
+  sleepbutton.show();
+  washbutton.show();
 
+  image(sam_livingroom, 400, 200, 175, 220);
 }
 
 function bathroom() {
@@ -216,6 +246,9 @@ function bathroom() {
   //Shows used butttons
   sitbr.show();
   eatbl.show();
+  feedbutton.show();
+  sleepbutton.show();
+  washbutton.show();
 
   image(sam_bathroom, 600, 250, 205, 250);
 }
@@ -232,6 +265,9 @@ function kitchen() {
   //Shows used buttons
   sleepbl.show();
   washbr.show();
+  feedbutton.show();
+  sleepbutton.show();
+  washbutton.show();
 
   image(sam_kitchen, 180, 150, 145, 250);
 }
@@ -248,6 +284,9 @@ function bedroom() {
   //Shows used buttons
   eatbr.show();
   sitbl.show();
+  feedbutton.show();
+  sleepbutton.show();
+  washbutton.show();
 }
 
 function draw() {
@@ -276,6 +315,7 @@ function draw() {
     healthy -= deltaTime * 0.001 * healthdecay
   }
   if (healthy <= 0) {
+    currentRoom = "deathscreen";
     deathscreen();
   }
 }

@@ -1,21 +1,31 @@
-let backgroundimg1;
 let kitchenbg;
 let livingroombg;
 let bathroombg;
 let bedroombg;
+let currentRoom = "livingroom"
+
 let samStand;
-let samStandangle;
 let sam_kitchen;
 let sam_bathroom;
 
+let hungerdecay = 0.3;
+let cleandecay = 0.25;
+let energydecay = 0.35;
+
 let heart_full;
-let heart_empty;
 let food_full;
-let food_empty;
 let energy_full;
-let energy_empty;
 let clean_full;
-let clean_empty;
+let status_bar;
+
+let hunger = 5.0;
+let dirty = 5.0;
+let energy = 5.0;
+let healthy;
+
+let feedbutton;
+let washbutton;
+let sleepbutton;
 
 let eatright;
 let eatleft;
@@ -36,51 +46,56 @@ let washbl;
 
 function setup() {
   createCanvas(1200, 675);
+
   //Eat button rechts
   eatbr = createImg('assets/eat_arrow_right.png');
-  eatbr.position(1040, 250);
-  eatbr.size(200, 200);
-  eatbr.mousePressed(kitchen);
+  eatbr.position(870, 585);
+  eatbr.size(80, 80);
+  eatbr.mousePressed(switchkitchen);
   //Eat button links
   eatbl = createImg('assets/eat_arrow_left.png');
-  eatbl.position(-20, 250);
-  eatbl.size(200, 200);
-  eatbl.mousePressed(kitchen);
+  eatbl.position(275, 585);
+  eatbl.size(80, 80);
+  eatbl.mousePressed(switchkitchen);
   //Sleep button rechts
   sleepbr = createImg('assets/sleep_arrow_right.png');
-  sleepbr.position(1040, 250);
-  sleepbr.size(200, 200);
-  sleepbr.mousePressed(bedroom);
+  sleepbr.position(870, 585);
+  sleepbr.size(80, 80);
+  sleepbr.mousePressed(switchbedroom);
   //Sleep button links
   sleepbl = createImg('assets/sleep_arrow_left.png');
-  sleepbl.position(-20, 250);
-  sleepbl.size(200, 200);
-  sleepbl.mousePressed(bedroom);
+  sleepbl.position(275, 585);
+  sleepbl.size(80, 80);
+  sleepbl.mousePressed(switchbedroom);
   //Sit button rechts
   sitbr = createImg('assets/sit_arrow_right.png');
-  sitbr.position(1040, 250);
-  sitbr.size(200, 200);
-  sitbr.mousePressed(livingroom);
+  sitbr.position(870, 585);
+  sitbr.size(80, 80);
+  sitbr.mousePressed(switchlivingroom);
   //Sit button links
   sitbl = createImg('assets/sit_arrow_left.png');
-  sitbl.position(-20, 250);
-  sitbl.size(200, 200);
-  sitbl.mousePressed(livingroom);
+  sitbl.position(275, 585);
+  sitbl.size(80, 80);
+  sitbl.mousePressed(switchlivingroom);
   //Wash button rechts
   washbr = createImg('assets/wash_arrow_right.png');
-  washbr.position(1040, 250);
-  washbr.size(200, 200);
-  washbr.mousePressed(bathroom);
+  washbr.position(870, 585);
+  washbr.size(80, 80);
+  washbr.mousePressed(switchbathroom);
   //Wash button links
   washbl = createImg('assets/wash_arrow_left.png');
-  washbl.position(-20, 250);
-  washbl.size(200, 200);
-  washbl.mousePressed(bathroom);
-  livingroom();
+  washbl.position(275, 585);
+  washbl.size(80, 80);
+  washbl.mousePressed(switchbathroom);
+  
+  //Button to feed
+  feedbutton = createImg('assets/Bread.png');
+  feedbutton.position(355, 597);
+  feedbutton.size(50, 50);
+  feedbutton.mousePressed(feeding);
 }
 
 function preload() {
-  backgroundimg1 = loadImage("assets/boe.jpg");
   livingroombg = loadImage("assets/living_room.png");
   bathroombg = loadImage("assets/bath_room.png");
   kitchenbg = loadImage("assets/kitchen.png");
@@ -89,17 +104,55 @@ function preload() {
   sam_kitchen = loadImage("assets/sam_kitchen.png");
   sam_bathroom = loadImage("assets/sam_bathroom.png");
   food_full = loadImage("assets/hungerbar_full.png");
-  food_empty = loadImage("assets/hungerbar_empty.png");
   heart_full = loadImage("assets/heart_full.png");
-  heart_empty = loadImage("assets/heart_empty.png");
   energy_full = loadImage("assets/energybar_full.png");
-  energy_empty = loadImage("assets/energybar_empty.png");
   clean_full = loadImage("assets/soapbar_full.png");
-  clean_empty = loadImage("assets/soapbar_empty.png");
+  status_bar = loadImage("assets/stats_bar.png");
+}
+function switchbathroom() {
+  currentRoom = "bathroom"
+}
+function switchlivingroom() {
+  currentRoom = "livingroom"
+}
+function switchkitchen() {
+  currentRoom = "kitchen"
+}
+function switchbedroom() {
+  currentRoom = "bedroom"
 }
 
 function eating() {
- image(food_full, 1000, 70, 50, 50);
+  for (let i = 0.0; i < 5; i += 1.0) {
+    if (i < hunger) {
+      image(food_full, 895 - i * 35, 450, 50, 40);
+    }
+  }
+}
+function feeding() {
+  if (currentRoom = "kitchen") {
+  hunger = hunger + 1
+  }
+}
+
+function washing() {
+  for (let i = 0.0; i < 5; i += 1.0) {
+    if (i < dirty) {
+    image(clean_full, 895 - i * 45, 540, 40, 35);
+    }
+  }
+}
+function sleeping() {
+  for (let i = 0.0; i < 5; i += 1.0) {
+    if (i < energy) {
+    image(energy_full, 900 - i * 30, 490, 40, 50);
+    }
+  }
+}
+function health() {
+  for (let i = 0; i < 5; i++) {
+    image(heart_full, 900 - i * 40, 410, 35, 35);
+  }
 }
 
 function livingroom() {
@@ -164,5 +217,26 @@ function bedroom() {
 }
 
 function draw() {
+  if (currentRoom == "livingroom"){
+    livingroom();
+  }
+  else if (currentRoom == "bathroom") {
+    bathroom();
+  }
+  else if (currentRoom == "bedroom") {
+    bedroom();
+  }
+  else if (currentRoom == "kitchen") {
+    kitchen();
+  }
   eating();
+  sleeping();
+  washing();
+  health();
+  hunger -= deltaTime * 0.001 * hungerdecay
+  dirty -= deltaTime * 0.001 * cleandecay
+  energy -= deltaTime * 0.001 * energydecay
+  image(status_bar, 250, 275, 700, 625);
+
+
 }

@@ -5,6 +5,17 @@ let bathroombg;
 let bedroombg;
 let samStand;
 let samStandangle;
+let sam_kitchen;
+let sam_bathroom;
+
+let heart_full;
+let heart_empty;
+let food_full;
+let food_empty;
+let energy_full;
+let energy_empty;
+let clean_full;
+let clean_empty;
 
 let eatright;
 let eatleft;
@@ -75,7 +86,20 @@ function preload() {
   kitchenbg = loadImage("assets/kitchen.png");
   bedroombg = loadImage("assets/bed_room.png");
   samStand = loadImage("assets/sam_stand.png");
-  samStandangle = loadImage("assets/sam_stand_angle.png");
+  sam_kitchen = loadImage("assets/sam_kitchen.png");
+  sam_bathroom = loadImage("assets/sam_bathroom.png");
+  food_full = loadImage("assets/hungerbar_full.png");
+  food_empty = loadImage("assets/hungerbar_empty.png");
+  heart_full = loadImage("assets/heart_full.png");
+  heart_empty = loadImage("assets/heart_empty.png");
+  energy_full = loadImage("assets/energybar_full.png");
+  energy_empty = loadImage("assets/energybar_empty.png");
+  clean_full = loadImage("assets/soapbar_full.png");
+  clean_empty = loadImage("assets/soapbar_empty.png");
+}
+
+function eating() {
+ image(food_full, 1000, 70, 50, 50);
 }
 
 function livingroom() {
@@ -91,7 +115,6 @@ function livingroom() {
   sleepbl.show();
   washbr.show();
 
-  
 }
 
 function bathroom() {
@@ -106,6 +129,8 @@ function bathroom() {
   //Shows used butttons
   sitbl.show();
   eatbr.show();
+
+  image(sam_bathroom, 600, 250, 205, 250);
 }
 
 function kitchen() {
@@ -121,7 +146,7 @@ function kitchen() {
   sleepbr.show();
   washbl.show();
 
-  image(samStandangle, 400, 150, 175, 250);
+  image(sam_kitchen, 180, 150, 145, 250);
 }
 
 function bedroom() {
@@ -139,5 +164,5 @@ function bedroom() {
 }
 
 function draw() {
-  
+  eating();
 }

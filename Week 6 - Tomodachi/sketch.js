@@ -16,6 +16,7 @@ let hungerdecay = 0.28;
 let cleandecay = 0.2;
 let energydecay = 0.25;
 let healthdecay = 0.2;
+let healthregen = 0.3;
 
 let heart_full;
 let food_full;
@@ -108,8 +109,27 @@ function setup() {
   sleepbutton.position(510, 597);
   sleepbutton.size(50, 50);
   sleepbutton.mousePressed(sleep);
+
+
+  let data = getItem("stats");
+
+  if (data !== null && data !== undefined) {
+    hunger = data.hunger
+    dirty = data.dirty
+    energy = data.energy
+    healthy = data.healthy
+  }
 }
 
+function saveData() {
+  // De 4 stats worden opgeslagen
+  storeItem("stats", {
+    hunger: hunger,
+    dirty: dirty,
+    energy: energy,
+    healthy: healthy
+  });
+}
 function preload() {
   deathbg = loadImage("assets/death_screen.png");
   livingroombg = loadImage("assets/living_room.png");
@@ -178,6 +198,7 @@ function eating() {
 function feeding() {
   if (currentRoom == "kitchen") {
     hunger = hunger + 1
+    saveData();
   }
 }
 
@@ -191,6 +212,7 @@ function washing() {
 function cleaning() {
   if (currentRoom == "bathroom") {
     dirty = dirty + 1
+    saveData();
   }
 }
 
@@ -204,6 +226,7 @@ function sleeping() {
 function sleep() {
   if (currentRoom == "bedroom") {
     energy = energy + 1
+    saveData();
   }
 }
 
@@ -307,15 +330,28 @@ function draw() {
   washing();
   health();
   hunger -= deltaTime * 0.001 * hungerdecay
+  hunger = constrain(hunger, 0, 5);
+  saveData();
   dirty -= deltaTime * 0.001 * cleandecay
+  dirty = constrain(dirty, 0, 5);
+  saveData();
   energy -= deltaTime * 0.001 * energydecay
+  energy = constrain(energy, 0, 5);
+  saveData();
   image(status_bar, 250, 275, 700, 625);
 
-  if (hunger <= 0 && dirty <= 0 && energy <= 0) {
+  if (hunger == 0 && dirty == 0 && energy == 0) {
     healthy -= deltaTime * 0.001 * healthdecay
+
+    saveData();
   }
   if (healthy <= 0) {
     currentRoom = "deathscreen";
     deathscreen();
   }
+  if (healthy < 5 && hunger > 0 && dirty > 0 && energy > 0) {
+    healthy += deltaTime * 0.001 * healthregen
+    saveData();
+  }
+  console.log(healthy);
 }

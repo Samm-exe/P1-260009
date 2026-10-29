@@ -11,8 +11,10 @@ let samStand;
 let sam_kitchen;
 let sam_bathroom;
 let sam_livingroom;
+let sam_bedroom;
 
 let hungerdecay = 0.28;
+let happinessdecay = 0.26;
 let cleandecay = 0.2;
 let energydecay = 0.25;
 let healthdecay = 0.2;
@@ -20,11 +22,13 @@ let healthregen = 0.3;
 
 let heart_full;
 let food_full;
+let happiness_full;
 let energy_full;
 let clean_full;
 let status_bar;
 
 let hunger = 5.0;
+let happiness = 5.0;
 let dirty = 5.0;
 let energy = 5.0;
 let healthy = 5.0;
@@ -32,6 +36,12 @@ let healthy = 5.0;
 let feedbutton;
 let washbutton;
 let sleepbutton;
+let playbutton;
+
+let emote_sad;
+let emote_hunger;
+let emote_stinky;
+let emote_sleepy;
 
 let eatright;
 let eatleft;
@@ -109,6 +119,11 @@ function setup() {
   sleepbutton.position(510, 597);
   sleepbutton.size(50, 50);
   sleepbutton.mousePressed(sleep);
+  //Button to play
+  playbutton = createImg('assets/smile_full.png');
+  playbutton.position(575, 590);
+  playbutton.size(70, 70);
+  playbutton.mousePressed(playing);
 
 
   let data = getItem("stats");
@@ -118,6 +133,7 @@ function setup() {
     dirty = data.dirty
     energy = data.energy
     healthy = data.healthy
+    happiness = data.happiness
   }
 }
 
@@ -127,7 +143,8 @@ function saveData() {
     hunger: hunger,
     dirty: dirty,
     energy: energy,
-    healthy: healthy
+    healthy: healthy,
+    happiness: happiness
   });
 }
 function preload() {
@@ -140,12 +157,18 @@ function preload() {
   sam_kitchen = loadImage("assets/sam_kitchen.png");
   sam_bathroom = loadImage("assets/sam_bathroom.png");
   sam_livingroom = loadImage("assets/sam_livingroom.png");
+  sam_bedroom = loadImage("assets/sam_bedroom.png");
   food_full = loadImage("assets/hungerbar_full.png");
   heart_full = loadImage("assets/heart_full.png");
+  happiness_full = loadImage("assets/smile_full.png");
   energy_full = loadImage("assets/energybar_full.png");
   clean_full = loadImage("assets/soapbar_full.png");
   status_bar = loadImage("assets/stats_bar.png");
   textbar = loadImage("assets/scroll.png");
+  emote_hunger = loadImage("assets/emote_hunger.png");
+  emote_sad = loadImage("assets/emote_sad.png");
+  emote_sleepy = loadImage("assets/emote_sleep.png");
+  emote_stinky = loadImage("assets/emote_stinky.png"); 
 }
 
 function switchbathroom() {
@@ -169,6 +192,7 @@ function mousePressed() {
       energy = 5.0;
       healthy = 5.0;
       dirty = 5.0;
+      happiness = 5.0;
     }
   }
 }
@@ -185,7 +209,7 @@ function deathscreen() {
   feedbutton.hide();
   washbutton.hide();
   sleepbutton.hide();
-
+  playbutton.hide();
 }
 
 function eating() {
@@ -230,6 +254,20 @@ function sleep() {
   }
 }
 
+function play() {
+  for (let i = 0.0; i < 5; i += 1.0) {
+    if (i < happiness) {
+      image(happiness_full, 695 - i * 35, 450, 70, 70);
+    }
+  }
+}
+function playing() {
+  if (currentRoom == "livingroom") {
+    happiness = happiness + 1
+    saveData();
+  }
+}
+
 function health() {
   for (let i = 0.0; i < 5; i += 1.0) {
     if (i < healthy) {
@@ -253,6 +291,7 @@ function livingroom() {
   feedbutton.show();
   sleepbutton.show();
   washbutton.show();
+  playbutton.show();
 
   image(sam_livingroom, 400, 200, 175, 220);
 }
@@ -272,6 +311,7 @@ function bathroom() {
   feedbutton.show();
   sleepbutton.show();
   washbutton.show();
+  playbuttton.show();
 
   image(sam_bathroom, 600, 250, 205, 250);
 }
@@ -291,6 +331,7 @@ function kitchen() {
   feedbutton.show();
   sleepbutton.show();
   washbutton.show();
+  playbutton.show();
 
   image(sam_kitchen, 180, 150, 145, 250);
 }
@@ -310,6 +351,9 @@ function bedroom() {
   feedbutton.show();
   sleepbutton.show();
   washbutton.show();
+  playbutton.show();
+
+  image(sam_bedroom, 10, 230, 240, 280);
 }
 
 function draw() {
@@ -329,6 +373,7 @@ function draw() {
   sleeping();
   washing();
   health();
+  play();
   hunger -= deltaTime * 0.001 * hungerdecay
   hunger = constrain(hunger, 0, 5);
   saveData();

@@ -8,6 +8,7 @@ let currentRoom = "livingroom";
 let speechbubble_r;
 let speechbubble_l;
 let click;
+let deathsound;
 
 let samStand;
 let sam_kitchen;
@@ -174,6 +175,7 @@ function preload() {
   emote_stinky = loadImage("assets/emote_stinky.png");
 
   click = loadSound("assets/click.mp3");
+  deathsound = loadSound("assets/Deathsound.mp3");
 }
 
 function switchbathroom() {
@@ -475,6 +477,10 @@ function draw() {
   if (hunger == 0 && dirty == 0 && energy == 0 && happiness == 0) {
     healthy -= deltaTime * 0.001 * healthdecay
     saveData();
+  }
+
+  if (healthy <= 0 && currentRoom != "deathscreen"){
+    deathsound.play();
   }
   //shows the deathscreen if the health is at 0
   if (healthy <= 0) {

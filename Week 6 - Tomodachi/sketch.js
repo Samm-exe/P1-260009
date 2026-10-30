@@ -5,7 +5,9 @@ let bedroombg;
 let deathbg;
 let currentRoom = "livingroom";
 
-let textbox;
+let speechbubble_r;
+let speechbubble_l;
+let click;
 
 let samStand;
 let sam_kitchen;
@@ -13,11 +15,11 @@ let sam_bathroom;
 let sam_livingroom;
 let sam_bedroom;
 
-let hungerdecay = 0.28;
-let happinessdecay = 0.26;
-let cleandecay = 0.2;
-let energydecay = 0.25;
-let healthdecay = 0.2;
+let hungerdecay = 0.18;
+let happinessdecay = 0.16;
+let cleandecay = 0.1;
+let energydecay = 0.15;
+let healthdecay = 0.1;
 let healthregen = 0.3;
 
 let heart_full;
@@ -125,7 +127,7 @@ function setup() {
   playbutton.size(70, 70);
   playbutton.mousePressed(playing);
 
-
+  //Gets the statistics for last time booted
   let data = getItem("stats");
 
   if (data !== null && data !== undefined) {
@@ -138,7 +140,7 @@ function setup() {
 }
 
 function saveData() {
-  // De 4 stats worden opgeslagen
+  // the stats get saved
   storeItem("stats", {
     hunger: hunger,
     dirty: dirty,
@@ -164,24 +166,31 @@ function preload() {
   energy_full = loadImage("assets/energybar_full.png");
   clean_full = loadImage("assets/soapbar_full.png");
   status_bar = loadImage("assets/stats_bar.png");
-  textbar = loadImage("assets/scroll.png");
+  speechbubble_r = loadImage("assets/speech_bubble_r.png");
+  speechbubble_l = loadImage("assets/speech_bubble_l.png");
   emote_hunger = loadImage("assets/emote_hunger.png");
   emote_sad = loadImage("assets/emote_sad.png");
   emote_sleepy = loadImage("assets/emote_sleep.png");
-  emote_stinky = loadImage("assets/emote_stinky.png"); 
+  emote_stinky = loadImage("assets/emote_stinky.png");
+
+  click = loadSound("assets/click.mp3");
 }
 
 function switchbathroom() {
   currentRoom = "bathroom"
+  click.play();
 }
 function switchlivingroom() {
   currentRoom = "livingroom"
+  click.play();
 }
 function switchkitchen() {
   currentRoom = "kitchen"
+  click.play();
 }
 function switchbedroom() {
   currentRoom = "bedroom"
+  click.play();
 }
 
 function mousePressed() {
@@ -198,6 +207,7 @@ function mousePressed() {
 }
 function deathscreen() {
   background(deathbg);
+  //hides all buttons
   eatbr.hide();
   eatbl.hide();
   sitbr.hide();
@@ -221,6 +231,7 @@ function eating() {
 }
 function feeding() {
   if (currentRoom == "kitchen") {
+    click.play();
     hunger = hunger + 1
     saveData();
   }
@@ -235,6 +246,7 @@ function washing() {
 }
 function cleaning() {
   if (currentRoom == "bathroom") {
+    click.play();
     dirty = dirty + 1
     saveData();
   }
@@ -249,6 +261,7 @@ function sleeping() {
 }
 function sleep() {
   if (currentRoom == "bedroom") {
+    click.play();
     energy = energy + 1
     saveData();
   }
@@ -257,13 +270,15 @@ function sleep() {
 function play() {
   for (let i = 0.0; i < 5; i += 1.0) {
     if (i < happiness) {
-      image(happiness_full, 695 - i * 35, 450, 70, 70);
+      image(happiness_full, 245 + i * 45, 520, 70, 70);
     }
   }
 }
 function playing() {
   if (currentRoom == "livingroom") {
+    click.play();
     happiness = happiness + 1
+    energy = energy - 0.5
     saveData();
   }
 }
@@ -294,6 +309,23 @@ function livingroom() {
   playbutton.show();
 
   image(sam_livingroom, 400, 200, 175, 220);
+  //displays a textbubble with an emoji if a certain stat is low
+  if (hunger < 3) {
+    image(speechbubble_r, 490, 160, 110, 100);
+    image(emote_hunger, 525, 180, 40, 40);
+  } 
+  if (energy < 3) {
+    image(speechbubble_r, 510, 250, 110, 100);
+    image(emote_sleepy, 545, 270, 40, 40);
+  }
+  if (dirty < 3) {
+    image(speechbubble_l, 320, 175, 110, 100);
+    image(emote_stinky, 355, 195, 40, 40);
+  }
+  if (happiness < 3) {
+    image(speechbubble_l, 300, 265, 110, 100);
+    image(emote_sad, 335, 285, 40, 40);
+  } 
 }
 
 function bathroom() {
@@ -311,9 +343,26 @@ function bathroom() {
   feedbutton.show();
   sleepbutton.show();
   washbutton.show();
-  playbuttton.show();
+  playbutton.show();
 
   image(sam_bathroom, 600, 250, 205, 250);
+  //displays a textbubble with an emoji if a certain stat is low
+  if (hunger < 3) {
+    image(speechbubble_r, 730, 210, 110, 100);
+    image(emote_hunger, 765, 230, 40, 40);
+  } 
+  if (energy < 3) {
+    image(speechbubble_r, 730, 300, 110, 100);
+    image(emote_sleepy, 765, 320, 40, 40);
+  }
+  if (dirty < 3) {
+    image(speechbubble_l, 560, 225, 110, 100);
+    image(emote_stinky, 595, 245, 40, 40);
+  }
+  if (happiness < 3) {
+    image(speechbubble_l, 540, 315, 110, 100);
+    image(emote_sad, 575, 335, 40, 40);
+  } 
 }
 
 function kitchen() {
@@ -334,6 +383,23 @@ function kitchen() {
   playbutton.show();
 
   image(sam_kitchen, 180, 150, 145, 250);
+  //displays a textbubble with an emoji if a certain stat is low
+  if (hunger < 3) {
+    image(speechbubble_r, 310, 110, 110, 100);
+    image(emote_hunger, 345, 130, 40, 40);
+  } 
+  if (energy < 3) {
+    image(speechbubble_r, 310, 200, 110, 100);
+    image(emote_sleepy, 345, 220, 40, 40);
+  }
+  if (dirty < 3) {
+    image(speechbubble_l, 140, 125, 110, 100);
+    image(emote_stinky, 175, 145, 40, 40);
+  }
+  if (happiness < 3) {
+    image(speechbubble_l, 120, 215, 110, 100);
+    image(emote_sad, 155, 235, 40, 40);
+  } 
 }
 
 function bedroom() {
@@ -354,6 +420,23 @@ function bedroom() {
   playbutton.show();
 
   image(sam_bedroom, 10, 230, 240, 280);
+  //displays a textbubble with an emoji if a certain stat is low
+  if (hunger < 3) {
+    image(speechbubble_r, 170, 240, 110, 100);
+    image(emote_hunger, 205, 260, 40, 40);
+  } 
+  if (energy < 3) {
+    image(speechbubble_r, 175, 330, 110, 100);
+    image(emote_sleepy, 210, 350, 40, 40);
+  }
+  if (dirty < 3) {
+    image(speechbubble_l, -15, 245, 110, 100);
+    image(emote_stinky, 20, 265, 40, 40);
+  }
+  if (happiness < 3) {
+    image(speechbubble_l, -10 , 335, 110, 100);
+    image(emote_sad, 25, 355, 40, 40);
+  } 
 }
 
 function draw() {
@@ -374,6 +457,7 @@ function draw() {
   washing();
   health();
   play();
+  //makes the stats decay a certain amount per second and limits it so the min is 0 and the max is 5
   hunger -= deltaTime * 0.001 * hungerdecay
   hunger = constrain(hunger, 0, 5);
   saveData();
@@ -383,20 +467,23 @@ function draw() {
   energy -= deltaTime * 0.001 * energydecay
   energy = constrain(energy, 0, 5);
   saveData();
+  happiness -= deltaTime * 0.001 * happinessdecay
+  happiness = constrain(happiness, 0, 5);
+  saveData();
   image(status_bar, 250, 275, 700, 625);
-
-  if (hunger == 0 && dirty == 0 && energy == 0) {
+  //decays the health if all other stats are empty
+  if (hunger == 0 && dirty == 0 && energy == 0 && happiness == 0) {
     healthy -= deltaTime * 0.001 * healthdecay
-
     saveData();
   }
+  //shows the deathscreen if the health is at 0
   if (healthy <= 0) {
     currentRoom = "deathscreen";
     deathscreen();
   }
-  if (healthy < 5 && hunger > 0 && dirty > 0 && energy > 0) {
+  //regenerates the hearths if the stats are nolonger empty
+  if (healthy < 5 && hunger > 0 && dirty > 0 && energy > 0 && happiness > 0) {
     healthy += deltaTime * 0.001 * healthregen
     saveData();
   }
-  console.log(healthy);
 }
